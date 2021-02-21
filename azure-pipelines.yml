@@ -7,15 +7,22 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
-
+strategy:
+  matrix:
+     vmImage1:
+       vmImage: vs2017-win2016
+     vmImage2:
+       vmImage: 'ubuntu-latest'
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+   versionSpec: '12.x'
+- script: npm install'
 
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
+
+
+
